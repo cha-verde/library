@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Library</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>My Library</h1>
+        <button class="add-book-button">Add a new book</button>
+        <dialog>
+            <form action="" id="new-book-form">
+                <button type="button" class="close-dialog-button">Close</button>
+                <label for="book-name">Name</label>
+                <input type="text" id="book-name" class="book-name" name="book-name">
+                <label for="book-author">Author</label>
+                <input type="text" id="book-author" class="book-author" name="book-author">
+                <label for="book-year">Year</label>
+                <input type="tel" id="book-year" class="book-year" name="book-year" pattern="[0-9]{0,4}">
+                <label for="book-pages">Number of Pages</label>
+                <input type="tel" id="book-pages" class="book-pages" name="book-pages" pattern="[0-9]{1,6}">
+                <div class="book-status-question">Status</div>
+                <div class="book-status-checkbox">
+                    <input type="radio" id="book-status-not-read" name="book-status" value="Not read"
+                        class="book-status" checked />
+                    <label for="book-status-not-read">Not read</label>
+                    <input type="radio" id="book-status-reading" name="book-status" value="Reading" class="book-status" />
+                    <label for="book-status-reading">Reading</label>
+                    <input type="radio" id="book-status-read" name="book-status" value="Read" class="book-status" />
+                    <label for="book-status-read">Read</label>
+                </div>
+                <button type="submit" class="add-book-dialog-button">Add</button>
+            </form>
+        </dialog>
+        <div class="book-container">
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
