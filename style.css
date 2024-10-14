@@ -100,3 +100,7 @@ input[type="tel"]:invalid{
     border-radius: 10px;
     height: 200px;
 }
+
+.remove-button, .read-button{
+    padding: 2px;
+}

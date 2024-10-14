@@ -19,6 +19,11 @@ function Book(name, author, year, pages, status) {
     this.status = status;
 }
 
+
+Book.prototype.changeRead = function () {
+    this.status = "Read";
+};
+
 function displayBooks() {
     bookContainer.replaceChildren();
     if (myLibrary.length == 0) {
@@ -29,23 +34,32 @@ function displayBooks() {
     else {
         for (var i = 0; i < myLibrary.length; i++) {
             const bookCard = document.createElement("div");
-            const removeButton = document.createElement("button")
+            const removeButton = document.createElement("button");
             bookCard.setAttribute("class", "book-card");
             const bookInfo = document.createElement("div");
+            const bookButtons = document.createElement("div");
             removeButton.textContent = "Remove";
             removeButton.setAttribute("class", "remove-book-button")
             removeButton.setAttribute("data-index-number", i);
             removeButton.setAttribute("class", "remove-button");
 
             for (var prop in myLibrary[i]) {
-                console.log(myLibrary[i][prop]);
-                if (myLibrary[i][prop] !== "") {
-                    bookInfo.appendChild(createDiv(i, prop))
+                if (prop != "changeRead") {
+                    if (myLibrary[i][prop] !== "") {
+                        bookInfo.appendChild(createDiv(i, prop))
+                    }
                 }
             }
 
+            const readButton = document.createElement("button");
+            readButton.setAttribute("data-index-number", i);
+            readButton.setAttribute("class", "read-button");
+            readButton.textContent = "Change to read";
+
+            bookButtons.appendChild(readButton);
+            bookButtons.appendChild(removeButton);
             bookCard.appendChild(bookInfo);
-            bookCard.appendChild(removeButton);
+            bookCard.appendChild(bookButtons);
             bookContainer.appendChild(bookCard);
         }
     }
@@ -89,18 +103,25 @@ addBookDialogButton.addEventListener("click", (e) => {
         dialog.close();
         displayBooks();
     }
-    else{
+    else {
         alert("Please fill the name field.")
     }
 
 })
 
-
-
 document.addEventListener("click", (e) => {
     if (e.target && e.target.className == "remove-button") {
         myLibrary.splice(+e.target.dataset.indexNumber, 1);
         displayBooks();
+    }
+
+    if (e.target && e.target.className == "read-button") {
+
+        var obj = myLibrary[e.target.dataset.indexNumber];
+        console.log(obj);
+        obj.changeRead();
+        displayBooks();
+        console.log(obj);
     }
 
 });
